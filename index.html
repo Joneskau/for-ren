@@ -18,11 +18,6 @@
 
     <!-- Audio preload removed for better performance - will lazy load on user interaction -->
     <style>
-        body {
-            overflow-x: hidden;
-        }
-    </style>
-    <style>
         * {
             margin: 0;
             padding: 0;
@@ -270,24 +265,6 @@
         }
 
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-        }
 
         .btn-primary {
             font-family: 'Montserrat', sans-serif;
@@ -372,6 +349,14 @@
             font-weight: 400;
             /* Slightly bolder for readability */
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-16);
+            display: block;
+            text-align: center;
+            filter: drop-shadow(0 2px 6px rgba(255, 105, 180, 0.5));
         }
 
         .story-card p {
@@ -613,73 +598,6 @@
             color: #ffe6ef;
         }
 
-        .blur-reveal {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            margin: var(--space-24) 0;
-        }
-
-        .blur-reveal img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
-            filter: blur(10px);
-            transition: filter 0.5s ease;
-        }
-
-        @media (hover: hover) {
-            .blur-reveal:hover img {
-                filter: blur(0px);
-            }
-        }
-
-        .blur-reveal:active img {
-            filter: blur(0px);
-        }
-
-        .blur-hint {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9rem;
-            color: #ffe6ef;
-            animation: pulse-blur-hint 2s infinite;
-        }
-
-        @keyframes pulse-blur-hint {
-
-            0%,
-            100% {
-                color: #ffe6ef;
-            }
-
-            50% {
-                color: #fff;
-            }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ffb6c1;
-            border-radius: 50%;
-            animation: sparkleAnim 1s infinite;
-        }
-
-        @keyframes sparkleAnim {
-
-            0%,
-            100% {
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-        }
 
         /* ===== THE QUESTION SECTION ===== */
         .question {
@@ -1536,31 +1454,6 @@
         }
 
         /* ===== ACCESSIBILITY REFINEMENTS ===== */
-        .skip-link {
-            position: absolute;
-            left: -9999px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-
-        .skip-link:focus {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: auto;
-            height: auto;
-            padding: 12px 24px;
-            background: #e91e63;
-            color: white;
-            border-radius: 50px;
-            z-index: 9999;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
-        }
 
         .skip-links {
             position: absolute;
@@ -1603,14 +1496,163 @@
             overflow: hidden;
         }
 
-        /* Swipe gesture support */
-        .swipe-enabled {
-            touch-action: pan-y;
-        }
 
         :focus-visible {
             outline: 3px solid #ff69b4;
             outline-offset: 4px;
+        }
+
+        /* ===== WHERE IT ALL STARTED ===== */
+        #first-night {
+            padding: 80px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .scene.first-night-scene {
+            background: radial-gradient(ellipse at center, #1f0f30 0%, #16213e 100%);
+        }
+
+        #first-night h2 {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .first-night-subtitle {
+            color: #c084fc;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .first-night-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .first-night-photos {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* The note photo */
+        .note-container {
+            position: relative;
+        }
+
+        .tree-note-img {
+            max-width: 280px;
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            transform: rotate(-2deg);
+            transition: transform 0.4s ease;
+        }
+
+        .tree-note-img:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .note-caption {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: #b8a9c9;
+            font-style: italic;
+        }
+
+        /* The concert selfie */
+        .concert-container {
+            position: relative;
+        }
+
+        .concert-selfie-img {
+            max-width: 240px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            transform: rotate(2deg);
+            transition: transform 0.4s ease;
+        }
+
+        .concert-selfie-img:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .concert-caption {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: #b8a9c9;
+            font-style: italic;
+        }
+
+        /* The text */
+        .first-night-text {
+            max-width: 500px;
+        }
+
+        .quote-line {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #fcd9e0;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .quote-line::before,
+        .quote-line::after {
+            font-size: 2.5rem;
+            color: rgba(255, 107, 157, 0.3);
+            position: absolute;
+        }
+
+        .quote-line::before {
+            content: "\201C";
+            top: -10px;
+            left: -5px;
+        }
+
+        .quote-line::after {
+            content: "\201D";
+            bottom: -20px;
+            right: -5px;
+        }
+
+        .story-line {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .story-line:last-child {
+            color: #fbbf24;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        /* Mobile - first night */
+        @media (max-width: 480px) {
+            .tree-note-img {
+                max-width: 240px;
+            }
+
+            .concert-selfie-img {
+                max-width: 200px;
+            }
+
+            .quote-line {
+                font-size: 1.1rem;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1636,6 +1678,7 @@
     <!-- Skip Links -->
     <nav class="skip-links">
         <a href="#landing">Skip to landing</a>
+        <a href="#first-night">Skip to where it all started</a>
         <a href="#story">Skip to story</a>
 
         <a href="#amazing">Skip to why you're amazing</a>
@@ -1673,6 +1716,8 @@
     <nav class="section-dots" aria-label="Section navigation mini-map">
         <button class="section-dot active" data-section="landing" aria-label="Go to landing section"
             title="Landing"></button>
+        <button class="section-dot" data-section="first-night" aria-label="Go to where it all started section"
+            title="First Night"></button>
         <button class="section-dot" data-section="story" aria-label="Go to our story section" title="Story"></button>
 
         <button class="section-dot" data-section="amazing" aria-label="Go to why you're amazing section"
@@ -1689,10 +1734,54 @@
             <div class="scene-content">
                 <h1 id="typewriter"></h1>
                 <p class="subtitle">A little something I made just for you</p>
-                <button class="btn-primary" onclick="scrollToSection('story')" aria-label="Start the story">Start the
+                <button class="btn-primary" onclick="scrollToSection('first-night')" aria-label="Start the story">Start
+                    the
                     story →</button>
             </div>
             <div class="scroll-hint">✨ Scroll down ✨</div>
+        </section>
+
+        <!-- WHERE IT ALL STARTED -->
+        <section class="scene first-night-scene reveal" id="first-night" aria-labelledby="first-night-title">
+            <div class="scene-content">
+                <div id="first-night-inner">
+                    <h2 class="section-title" id="first-night-title">Where It All Started 🎶</h2>
+                    <p class="first-night-subtitle">August 9, 2025 — The Yesterdaye Experience Vol. 4 — National Theatre
+                    </p>
+
+                    <div class="first-night-content">
+                        <div class="first-night-photos">
+                            <div class="note-container">
+                                <img src="Letter.jpg"
+                                    alt="Our handwritten note on a burnt-edge tag — Jones and Rencelle"
+                                    class="tree-note-img" width="280" height="373" loading="lazy" />
+                                <p class="note-caption">We wrote this and hung it on a tree that night ✨</p>
+                            </div>
+
+                            <div class="concert-container">
+                                <img src="Concert.jpg" alt="Jones and Rencelle at The Yesterdaye Experience"
+                                    class="concert-selfie-img" width="240" height="320" loading="lazy" />
+                                <p class="concert-caption">Us at the concert 💜</p>
+                            </div>
+                        </div>
+
+                        <div class="first-night-text">
+                            <p class="quote-line">"Life is like a box of chocolates, you never know what you are gonna
+                                get, but enjoy the surprise."</p>
+                            <p class="story-line">I asked you to come with me. You said yes. We weren't dating yet —
+                                just two people sharing a night of live music, good energy, and something neither of us
+                                could name yet.</p>
+                            <p class="story-line">But we felt it enough to write our names together on a little tag and
+                                hang it on a tree, like we were planting something.</p>
+                            <p class="story-line">Turns out, we were. 💛</p>
+                            <p class="story-line"
+                                style="color: #b8a9c9; font-style: italic; font-size: 0.95rem; margin-top: 10px;">At the
+                                time it felt like a small moment. Looking back now, it feels like the beginning of
+                                something bigger.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- STORY SECTION -->
@@ -1701,20 +1790,94 @@
                 <h2 class="section-title" id="story-title">Our Story</h2>
                 <div class="story-cards">
                     <div class="story-card">
-                        <h3>✨ The Day We Met</h3>
-                        <p>Everything changed in that moment. Time seemed to pause, and suddenly I knew life would be
-                            different from then on. You brought light into my world.</p>
+                        <div class="story-icon">☀️</div>
+                        <h3>The Little Things</h3>
+                        <p>Some of my favorite moments with you aren't big events or special plans.
+
+                            They're the little things.
+
+                            The good morning messages.
+                            The random check-ins during the day.
+                            The "Did you eat?" or "Did you rest?" texts.
+
+                            Those small moments remind me that love isn't just about grand gestures.
+                            Sometimes it's simply knowing someone is thinking about you.</p>
                     </div>
                     <div class="story-card">
-                        <h3>💍 Wife Material</h3>
-                        <p>I told my cousins five words I never took back: <em>"Rencelle is
-                                definitely wife material."</em> I meant it then. I mean it now.</p>
+                        <div class="story-icon">🌱</div>
+                        <h3>Growing Together</h3>
+                        <p>I remember the night we stayed up talking about where we see ourselves in five years.
+
+                            Not surface-level goals —
+                            real things. The kind of life we want to build,
+                            the kind of people we want to become.
+
+                            That conversation shifted something in me.
+                            It wasn't just about having plans —
+                            it was realizing I'd found someone who wants to build with the same intentionality.
+
+                            Since that night, I've noticed it everywhere:
+                            the way we push each other forward,
+                            the way we don't let each other settle.
+
+                            That's not something you find easily.
+                            And I don't take it for granted.</p>
                     </div>
                     <div class="story-card">
-                        <h3>🙏 Pursuing God Together</h3>
-                        <p>I believe in the triangle — you on one side, me on the other, both climbing toward God. The
-                            closer we each get to Him, the closer we get to each other. That's the love I want to build
-                            with you.</p>
+                        <div class="story-icon">🕊️</div>
+                        <h3>Peace</h3>
+                        <p>You once said that my calm energy makes you feel safe.
+
+                            But the truth is, you bring a kind of peace into my life too.
+
+                            With you, conversations feel easier.
+                            Silence feels comfortable.
+                            And life feels a little less chaotic.
+
+                            Being with you feels like home.</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-icon">💍</div>
+                        <h3>Wife Material</h3>
+                        <p>I remember telling my cousins something that felt bold at the time:
+                            five words I never took back — <strong>"Rencelle is definitely wife material."</strong>
+
+                            And I didn't mean it as a joke or just a compliment.
+
+                            I meant the way you care about people.
+                            The way you stand firm in your values.
+                            The way your kindness shows up in the small moments.
+
+                            It was one of those realizations that sneaks up on you quietly —
+                            when you start seeing someone not just as part of your present,
+                            but someone you could imagine building a future with.
+
+                            I meant it then.
+                            And I mean it now.</p>
+                    </div>
+                    <div class="story-card">
+                        <div class="story-icon">🙏</div>
+                        <h3>Pursuing God Together</h3>
+                        <p>One thing that's always mattered to me is building a relationship
+                            that doesn't just revolve around us.
+
+                            I believe in the triangle —
+                            you on one side,
+                            me on the other,
+                            and both of us climbing toward God.
+
+                            The closer we each grow to Him,
+                            the closer we naturally grow to each other.
+
+                            Not because we're trying to force love to work,
+                            but because we're letting God shape who we become.
+
+                            That's the kind of love I want to build with you —
+                            one that grows stronger through faith,
+                            patience,
+                            and purpose.
+
+                            And honestly… I can't think of anyone I'd rather walk that journey with.</p>
                     </div>
                 </div>
             </div>
@@ -1734,7 +1897,7 @@
                 <div class="slide"><img src="ac8cfaec-2ac5-42ee-aed6-9821d4b4a43d.jpg" alt="" loading="lazy"></div>
             </div>
             <div class="scene-content">
-                <h2 class="section-title" id="amazing-title">Why You're Amazing</h2>
+                <h2 class="section-title" id="amazing-title">What Makes You, You ✨</h2>
                 <p class="tap-instruction">(Click on the cards to reveal my favorite things about you)</p>
                 <div class="reasons-grid">
                     <div class="reason-card" onclick="toggleReason(this)"
@@ -1751,11 +1914,19 @@
                         onkeydown="if(event.key==='Enter'||event.key===' ') toggleReason(this)" role="button"
                         tabindex="0" title="Click to expand/collapse" aria-expanded="false">
                         <div class="reason-hint">+</div>
-                        <div class="reason-emoji">🌟</div>
+                        <div class="reason-emoji">🤍</div>
                         <div class="reason-title">Your Care</div>
-                        <div class="reason-text">Check-ins. The Good Mornings and Good Nights.
-                            The little prayers you offer like they're nothing — but they're everything. You don't just
-                            feel concern, Ren. You act on it.</div>
+                        <div class="reason-text">The way you care about people is something special.
+
+                            Not just the small check-ins,
+                            but the way you genuinely want the people in your life to be okay.
+
+                            You notice when someone is tired,
+                            when someone needs encouragement,
+                            when someone just needs to feel seen.
+
+                            That kind of care can't be faked —
+                            it's just who you are.</div>
                     </div>
                     <div class="reason-card" onclick="toggleReason(this)"
                         onkeydown="if(event.key==='Enter'||event.key===' ') toggleReason(this)" role="button"
@@ -1771,11 +1942,16 @@
                         onkeydown="if(event.key==='Enter'||event.key===' ') toggleReason(this)" role="button"
                         tabindex="0" title="Click to expand/collapse" aria-expanded="false">
                         <div class="reason-hint">+</div>
-                        <div class="reason-emoji">💕</div>
-                        <div class="reason-title">Your Calm</div>
-                        <div class="reason-text">You once told me my nonchalant energy calms you. But you don't realize
-                            — your presence is my safe harbour too. Being around you feels like the world makes sense.
-                        </div>
+                        <div class="reason-emoji">💛</div>
+                        <div class="reason-title">Your Warmth</div>
+                        <div class="reason-text">I noticed it that time you checked on your friend
+                            even though you were exhausted from your own day.
+
+                            You didn't make it about you.
+                            You just showed up — quietly, fully.
+
+                            That's the kind of warmth that isn't taught.
+                            It just lives in you.</div>
                     </div>
                     <div class="reason-card" onclick="toggleReason(this)"
                         onkeydown="if(event.key==='Enter'||event.key===' ') toggleReason(this)" role="button"
@@ -2121,7 +2297,6 @@
                 if (description && descEl && btn) {
                     // Show preview of description
                     const preview = description.substring(0, 80) + '...';
-                    const subEl = contentEl.querySelector('.gift-sub');
                     if (subEl) subEl.textContent = preview;
 
                     // Update button text based on content
@@ -2674,13 +2849,6 @@
         // Scroll to Top functionality
         const scrollToTopBtn = document.getElementById('scrollToTop');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
 
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
@@ -2755,7 +2923,7 @@
 
         // Update active dot on scroll
         function updateActiveDot() {
-            const sections = ['landing', 'story', 'amazing', 'mystery', 'question'];
+            const sections = ['landing', 'first-night', 'story', 'amazing', 'mystery', 'question'];
             const scrollPos = window.scrollY + window.innerHeight / 2;
 
             sections.forEach(id => {
@@ -2841,14 +3009,11 @@
             // Update section dots
             updateActiveDot();
 
-            if (scrollTop < 100) {
-                // Remove all gradient classes when at top
-                document.body.classList.remove(
-                    'gradient-story',
-                    'gradient-amazing',
-                    'gradient-mystery',
-                    'gradient-question'
-                );
+            // Update scroll-to-top button visibility
+            if (scrollTop > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
             }
         }, 16); // ~60fps throttling
 
